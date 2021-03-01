@@ -1,20 +1,19 @@
 package zio.cassandra
 
-// import zio._
-// import zio.console._
+import zio._
+import zio.console._
 import zio.cassandra.config.Reader
 
-object Example extends App {
+object Example extends zio.App {
 
   val dbCredentialsWrapper = Reader.readConfig()
 
-  val xx = dbCredentialsWrapper.fold(
-    e => println(s"error reading config file: $e"),
-    v => println(s"dbCredentials (fold): $v")
+  val program = dbCredentialsWrapper.fold(
+    e => putStrLn(s"error reading config file: $e"),
+    v => putStrLn(s"dbCredentials: $v")
   )
 
-  // def run(args: List[String]) = {
-  //   xx.exitCode
-  //   // dbCredentials.map(s => println(s"dbCredentials config: $s"))
-  // }
+  def run(args: List[String]) = {
+    program.exitCode
+  }
 }
