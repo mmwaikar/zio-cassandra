@@ -6,9 +6,9 @@ import zio.cassandra.config.Reader
 
 object Example extends zio.App {
 
-  val dbCredentialsWrapper = Reader.readConfig()
+  val config = Reader.readConfig()
 
-  val program = dbCredentialsWrapper.fold(
+  val program = config.fold(
     e => putStrLn(s"error reading config file: $e"),
     v => putStrLn(s"dbCredentials: $v")
   )

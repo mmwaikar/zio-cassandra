@@ -8,11 +8,11 @@ import java.io.File
 
 object Reader {
 
-  def readConfig(filename: String = "application.conf"): Either[ReadError[String], DBCredentialsWrapper] = {
+  def readConfig(filename: String = "application.conf"): Either[ReadError[String], Configuration] = {
     val confFilePath = s"src/main/resources/$filename"
     val file = new File(confFilePath)
 
-    val automaticDescription = descriptor[DBCredentialsWrapper]
+    val automaticDescription = descriptor[Configuration]
     val configSource = TypesafeConfigSource.fromHoconFile(file)
 
     configSource.flatMap(source => read(automaticDescription from source))
