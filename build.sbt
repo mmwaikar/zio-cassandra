@@ -13,6 +13,7 @@ lazy val root = (project in file("."))
       zioConfig,
       zioConfigTypesafe,
       zioConfigMagnolia,
+      cassandraDriverCore,
       scalaTest % Test
     )
   )
