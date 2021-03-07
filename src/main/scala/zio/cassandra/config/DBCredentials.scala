@@ -6,8 +6,8 @@ object DBCredentials {
   val NULL_OBJECT = DBCredentials("", 0, "", "", "")
 }
 
-case class Configuration(db: DBCredentials)
+case class ApplicationConfig(db: DBCredentials)
 
-object Configuration {
-  val NULL_OBJECT = Configuration(DBCredentials.NULL_OBJECT)
+object ApplicationConfig {
+  val NULL_OBJECT = ApplicationConfig(DBCredentials.NULL_OBJECT)
 }
