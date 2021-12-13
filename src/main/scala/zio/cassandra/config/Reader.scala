@@ -5,16 +5,19 @@ import zio.config.magnolia.DeriveConfigDescriptor.{Descriptor, descriptor}
 import zio.config._
 
 import java.io.File
+import zio.ZIO
+import zio.IO
 
 object Reader {
 
-  def readConfig(filename: String = "application.conf"): Either[ReadError[String], ApplicationConfig] = {
-    val confFilePath = s"src/main/resources/$filename"
-    val file = new File(confFilePath)
+  def readConfig(filename: String = "application.conf"): IO[ReadError[String], ApplicationConfig] = {
+    val confFilePath = s"conf/$filename"
+    val file         = new File(confFilePath)
 
     val automaticDescription = descriptor[ApplicationConfig]
-    val configSource = TypesafeConfigSource.fromHoconFile(file)
+    val configSource         = TypesafeConfigSource.fromHoconFile(file)
 
-    configSource.flatMap(source => read(automaticDescription from source))
+    val eitherConfig = configSource.flatMap(source => read(automaticDescription from source))
+    ZIO.fromEither(eitherConfig)
   }
 }
