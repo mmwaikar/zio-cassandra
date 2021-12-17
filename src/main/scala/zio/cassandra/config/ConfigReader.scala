@@ -9,7 +9,7 @@ import java.io.File
 
 trait ConfigReader {
 
-  def readConfig(filename: String): IO[ReadError[String], ApplicationConfig]
+  def readConfig(filename: String = "application.conf"): IO[ReadError[String], ApplicationConfig]
 }
 
 case class ConfigReaderLive() extends ConfigReader {
@@ -28,5 +28,11 @@ case class ConfigReaderLive() extends ConfigReader {
 
 object ConfigReaderLive {
 
-  val layer: ULayer[Has[ConfigReader]] = ZLayer.succeed(ConfigReaderLive())
+  val layer: ULayer[Has[ConfigReader]] = (ConfigReaderLive.apply _).toLayer
+}
+
+object ConfigReader {
+
+  def readConfig(filename: String = "application.conf"): ZIO[Has[ConfigReader], ReadError[String], ApplicationConfig] =
+    ZIO.serviceWith[ConfigReader](_.readConfig(filename))
 }
