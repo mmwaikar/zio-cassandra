@@ -1,12 +1,14 @@
 package zio.cassandra.config
 
-import zio.config.typesafe._, TypesafeConfigSource._
+import zio.config.typesafe._
+import TypesafeConfigSource._
 import zio.config.magnolia.DeriveConfigDescriptor.{Descriptor, descriptor}
 import zio.config._
 
 import java.io.File
 import zio.ZIO
 import zio.IO
+import zio.cassandra.models.ApplicationConfig
 
 object Reader {
 

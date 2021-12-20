@@ -1,6 +1,7 @@
 package zio.cassandra.config
 
 import zio.cassandra.config.ConfigReader._
+import zio.cassandra.models.{ApplicationConfig, DBCredentials}
 import zio.test.Assertion._
 import zio.test._
 
@@ -14,5 +15,5 @@ object ConfigReaderSpec extends DefaultRunnableSpec {
     testM("Reading a configuration file through the Configuration service succeeds with the required data") {
       assertM(readConfig())(equalTo(actual))
     }
-  ).provideCustomLayer(ConfigReaderLive.layer)
+  ).provideLayer(ConfigReaderLive.layer)
 }

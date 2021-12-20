@@ -1,6 +1,7 @@
 package zio.cassandra.config
 
 import zio._
+import zio.cassandra.models.ApplicationConfig
 import zio.config._
 import zio.config.magnolia.DeriveConfigDescriptor.descriptor
 import zio.config.typesafe._

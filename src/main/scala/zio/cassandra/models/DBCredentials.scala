@@ -1,4 +1,4 @@
-package zio.cassandra.config
+package zio.cassandra.models
 
 case class DBCredentials(host: String, port: Int, keyspace: String, username: String, password: String)
 
