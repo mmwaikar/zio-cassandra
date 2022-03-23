@@ -22,8 +22,8 @@ case class ConfigReaderLive() extends ConfigReader {
     val automaticDescription = descriptor[ApplicationConfig]
     val configSource         = TypesafeConfigSource.fromHoconFile(file)
 
-    val eitherConfig = configSource.flatMap(source => read(automaticDescription from source))
-    ZIO.fromEither(eitherConfig)
+    val eitherConfig = read(automaticDescription from configSource)
+    eitherConfig
   }
 }
 

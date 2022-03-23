@@ -1,8 +1,8 @@
 import sbt._
 
 object Dependencies {
-  val zioVersion       = "1.0.12"
-  val zioConfigVersion = "1.0.10"
+  val zioVersion       = "1.0.13"
+  val zioConfigVersion = "2.0.4"
 
   lazy val zio        = "dev.zio" %% "zio"          % zioVersion
   lazy val zioTest    = "dev.zio" %% "zio-test"     % zioVersion

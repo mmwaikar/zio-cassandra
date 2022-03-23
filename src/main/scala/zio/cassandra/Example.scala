@@ -14,6 +14,7 @@ object Example extends zio.App {
   )
 
   def run(args: List[String]) = {
-    program.exitCode
+    val runtime = Runtime.default
+    runtime.unsafeRun(program).exitCode
   }
 }
